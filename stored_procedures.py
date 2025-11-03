@@ -6,7 +6,6 @@ class StoredProcedures:
         self.db = DatabaseManager()
     
     def criar_stored_procedures(self):
-        """Cria as 4 stored procedures obrigatórias"""
         session = self.db.create_session()
         
         try:
