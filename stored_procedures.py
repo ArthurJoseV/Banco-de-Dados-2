@@ -1,4 +1,3 @@
-# procedures/stored_procedures.py
 from database import DatabaseManager
 from sqlalchemy import text
 
@@ -11,7 +10,6 @@ class StoredProcedures:
         session = self.db.create_session()
         
         try:
-            # PROCEDURE 1: Registrar empréstimo com validações
             procedure1 = """
             CREATE PROCEDURE IF NOT EXISTS registrar_emprestimo(
                 IN p_usuario_id INT,
@@ -62,7 +60,6 @@ class StoredProcedures:
             END
             """
             
-            # PROCEDURE 2: Devolver livro e calcular multa
             procedure2 = """
             CREATE PROCEDURE IF NOT EXISTS devolver_livro(
                 IN p_emprestimo_id INT
@@ -109,8 +106,6 @@ class StoredProcedures:
                 WHERE id = v_livro_id;
             END
             """
-            
-            # PROCEDURE 3: Relatório de livros mais emprestados
             procedure3 = """
             CREATE PROCEDURE IF NOT EXISTS relatorio_livros_mais_emprestados(
                 IN p_mes INT,
@@ -133,8 +128,6 @@ class StoredProcedures:
                 LIMIT 10;
             END
             """
-            
-            # PROCEDURE 4: Estatísticas mensais
             procedure4 = """
             CREATE PROCEDURE IF NOT EXISTS estatisticas_mensais(
                 IN p_mes INT,
