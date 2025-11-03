@@ -9,7 +9,7 @@ class DatabaseTriggers:
         session = self.db.create_session()
         
         try:
-            # TRIGGER 1: Impedir empréstimo com multa pendente
+        
             trigger1 = """
             CREATE TRIGGER IF NOT EXISTS tg_impedir_emprestimo_multa
             BEFORE INSERT ON emprestimos
@@ -28,7 +28,6 @@ class DatabaseTriggers:
             END
             """
             
-            # TRIGGER 2: Atualizar quantidade disponível automaticamente
             trigger2 = """
             CREATE TRIGGER IF NOT EXISTS tg_att_quantidade_emprestimo
             AFTER INSERT ON emprestimos
@@ -39,8 +38,7 @@ class DatabaseTriggers:
                 WHERE id = NEW.livro_id;
             END
             """
-            
-            # TRIGGER 3: Validar dados do livro antes de inserir
+
             trigger3 = """
             CREATE TRIGGER IF NOT EXISTS tg_validar_livro
             BEFORE INSERT ON livros
