@@ -9,27 +9,28 @@ class DatabaseTriggers:
         session = self.db.create_session()
         
         try:
-        
+            
             trigger1 = """
-            CREATE TRIGGER IF NOT EXISTS tg_impedir_emprestimo_multa
+            CREATE TRIGGER IF NOT EXISTS impedir_emprestimo_multa
             BEFORE INSERT ON emprestimos
             FOR EACH ROW
             BEGIN
-                DECLARE v_multa_pendente INT;
+                DECLARE multa_pendente INT;
                 
-                SELECT COUNT(*) INTO v_multa_pendente 
+                SELECT COUNT(*) INTO multa_pendente 
                 FROM multas 
                 WHERE usuario_id = NEW.usuario_id AND status = 'pendente';
                 
-                IF v_multa_pendente > 0 THEN
+                IF multa_pendente > 0 THEN
                     SIGNAL SQLSTATE '45000' 
                     SET MESSAGE_TEXT = 'Usuário possui multas pendentes. Empréstimo não permitido.';
                 END IF;
             END
             """
             
+           
             trigger2 = """
-            CREATE TRIGGER IF NOT EXISTS tg_att_quantidade_emprestimo
+            CREATE TRIGGER IF NOT EXISTS att_quantidade_emprestimo
             AFTER INSERT ON emprestimos
             FOR EACH ROW
             BEGIN
@@ -38,9 +39,10 @@ class DatabaseTriggers:
                 WHERE id = NEW.livro_id;
             END
             """
-
+            
+           
             trigger3 = """
-            CREATE TRIGGER IF NOT EXISTS tg_validar_livro
+            CREATE TRIGGER IF NOT EXISTS validar_livro
             BEFORE INSERT ON livros
             FOR EACH ROW
             BEGIN
@@ -69,10 +71,9 @@ class DatabaseTriggers:
             END
             """
             
-            session.execute(text("DROP TRIGGER IF EXISTS tg_impedir_emprestimo_multa"))
-            session.execute(text("DROP TRIGGER IF EXISTS tg_att_quantidade_emprestimo"))
-            session.execute(text("DROP TRIGGER IF EXISTS tg_validar_livro"))
-            
+            session.execute(text("DROP TRIGGER IF EXISTS impedir_emprestimo_multa"))
+            session.execute(text("DROP TRIGGER IF EXISTS att_quantidade_emprestimo"))
+            session.execute(text("DROP TRIGGER IF EXISTS validar_livro"))
             session.execute(text(trigger1))
             session.execute(text(trigger2))
             session.execute(text(trigger3))
