@@ -38,12 +38,11 @@ class DatabaseManager:
             autor2 = Autor(nome="George Orwell", nacionalidade="Britânico")
             autor3 = Autor(nome="J.K. Rowling", nacionalidade="Britânica")
             
-            editora1 = Editora(nome="Editora Arqueiro", telefone="(11) 1234-5678")
-            editora2 = Editora(nome="Companhia das Letras", telefone="(11) 9876-5432")
+            editora1 = Editora(nome="Editora Arqueiro", telefone="(11) 99845-4578", email="atendimento@editoraarqueiro.com.br")
+            editora2 = Editora(nome="Companhia das Letras", telefone="(11) 99816-5212", email="sac@companhiadasletras.com.br")
             
             livro1 = Livro(
                 titulo="Fundação", 
-                isbn="978-85-7542-823-9",
                 ano_publicacao=1951,
                 editora="Editora Arqueiro",
                 quantidade_total=3,
@@ -52,7 +51,6 @@ class DatabaseManager:
             
             livro2 = Livro(
                 titulo="1984",
-                isbn="978-85-359-0277-8", 
                 ano_publicacao=1949,
                 editora="Companhia das Letras",
                 quantidade_total=2,
@@ -61,7 +59,6 @@ class DatabaseManager:
             
             livro3 = Livro(
                 titulo="Harry Potter e a Pedra Filosofal",
-                isbn="978-85-325-2761-4",
                 ano_publicacao=1997,
                 editora="Editora Arqueiro",
                 quantidade_total=5,
@@ -77,20 +74,19 @@ class DatabaseManager:
             livro3.categorias.append(cat2)
             
             usuario1 = Usuario(
-                nome="João Silva",
-                email="joao.silva@email.com",
-                telefone="(81) 99874-1475"
-            )
+                nome="Arthur José Vinícius Dias Ferreira",
+                email="ajvdf@discente.ifpe.edu.br",
+                telefone="(81) 98655-4263")
             
             usuario2 = Usuario(
-                nome="Maria Santos", 
-                email="maria.santos@email.com",
-                telefone="(87) 98754-2325"
+                nome="Vinícius Silva Castro", 
+                email="vsc3@discente.ifpe.edu.br",
+                telefone="(81) 98712-9245"
             )
             
             funcionario1 = Funcionario(
-                nome="Carlos Oliveira",
-                email="carlos.oliveira@biblioteca.com",
+                nome="Bruna Silveira Cardoso",
+                email="brunasilveira@hotmail.com",
                 cargo="Bibliotecário",
                 salario=3500.00
             )
